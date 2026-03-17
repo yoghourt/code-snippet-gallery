@@ -1,9 +1,17 @@
 import './App.css'
-import SnippetCard from './SnippetCard'
+import SnippetCard from './SnippetCard.js'
+
+interface Snippet {
+  id: number
+  title: string
+  code: string
+  language: string
+  tags: string[]
+}
 
 function App() {
 
-  const snippets = [
+  const snippets: Snippet[] = [
     {
       id: 1,
       title: "useState Hook",

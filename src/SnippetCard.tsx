@@ -1,5 +1,13 @@
 // SnippetCard.jsx
-function SnippetCard({ title, code, language, tags }) {
+
+interface SnippetCard {
+  title: string
+  code: string
+  language: string
+  tags: string[]
+}
+
+function SnippetCard({ title, code, language, tags }: SnippetCard) {
   return (
     <div className="snippet-card">
       <h3>{title}</h3>
