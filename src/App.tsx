@@ -1,5 +1,7 @@
 import './App.css'
-import SnippetCard from './SnippetCard.js'
+import SnippetCard from './SnippetCard'
+import AddSnippetForm from './AddSnippetForm'
+import { useState } from 'react'
 
 interface Snippet {
   id: number
@@ -11,7 +13,7 @@ interface Snippet {
 
 function App() {
 
-  const snippets: Snippet[] = [
+  const [snippets, setSnippets] = useState<Snippet[]>([
     {
       id: 1,
       title: "useState Hook",
@@ -26,11 +28,20 @@ function App() {
       language: "CSS",
       tags: ["CSS", "Layout"]
     }
-  ]
+  ])
+
+  const handleAddSnippet = (newSnippet: Omit<Snippet, 'id'>) => {
+    const snippet: Snippet = {
+      ...newSnippet,
+      id: Date.now() // Simple ID generation
+    }
+    setSnippets([snippet, ...snippets])
+  }
 
   return (
     <div>
       <h1>Code Snippet Gallery</h1>
+      <AddSnippetForm onAdd={handleAddSnippet} />
       <div className='snippets-container'>
         {
           snippets.map(snippet => (
