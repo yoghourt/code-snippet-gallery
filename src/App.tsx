@@ -2,14 +2,12 @@ import './App.css'
 import SnippetCard from './SnippetCard'
 import AddSnippetForm from './AddSnippetForm'
 import { useState } from 'react'
-
-interface Snippet {
-  id: number
-  title: string
-  code: string
-  language: string
-  tags: string[]
-}
+import type {
+  Language,
+  Tag,
+  Snippet,
+  SnippetInput
+} from './types.js'
 
 function App() {
 
@@ -30,7 +28,7 @@ function App() {
     }
   ])
 
-  const handleAddSnippet = (newSnippet: Omit<Snippet, 'id'>) => {
+  const handleAddSnippet = (newSnippet: SnippetInput) => {
     const snippet: Snippet = {
       ...newSnippet,
       id: Date.now() // Simple ID generation
