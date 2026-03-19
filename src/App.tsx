@@ -31,6 +31,8 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState('')
 
+  const [showAddForm, setShowAddForm] = useState(false)
+
   const handleAddSnippet = (newSnippet: SnippetInput) => {
     const snippet: Snippet = {
       ...newSnippet,
@@ -51,15 +53,30 @@ function App() {
   return (
     <div>
       <h1>Code Snippet Gallery</h1>
+      <div className="stats">
+        <p>Total Snippets: {snippets.length}</p>
+        {searchTerm && (
+          <p>Showing: {filteredSnippets.length} of {snippets.length}</p>
+        )}
+      </div>
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <AddSnippetForm onAdd={handleAddSnippet} />
+      <button type='submit' onClick={() => setShowAddForm(!showAddForm)}>Add New Snippet</button>
+      {showAddForm && <AddSnippetForm onAdd={handleAddSnippet} /> }
       <div className="snippets-container">
         {filteredSnippets.length > 0 ? (
           filteredSnippets.map(snippet => (
             <SnippetCard key={snippet.id} {...snippet} />
           ))
+        ) : searchTerm ? (
+          <div className="empty-state">
+            <p>🔍 No snippets found for "{searchTerm}"</p>
+            <p>Try a different search term or add a new snippet.</p>
+          </div>
         ) : (
-          <p>No snippets found. Try a different search term.</p>
+          <div className="empty-state">
+            <p>📝 No snippets yet!</p>
+            <p>Add your first code snippet above.</p>
+          </div>
         )}
       </div>
     </div>
