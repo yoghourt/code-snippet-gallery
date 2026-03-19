@@ -134,3 +134,38 @@ pre {
 .add-snippet-form button:hover {
   background: #0056b3;
 }
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.clear-button {
+  padding: 0.75rem 1.5rem;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.clear-button:hover {
+  background: #5a6268;
+}
